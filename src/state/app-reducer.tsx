@@ -31,7 +31,7 @@ const appSlice = createSlice(({
 
 export const appReducer = appSlice.reducer
 export const {setAppStatusAC, setAppErrorAC, setIsInitializedAC} = appSlice.actions
-
+console.log(setAppStatusAC)
 export const initializeAppTC = () => (dispatch: Dispatch) => {
     dispatch(setAppStatusAC({status:'loading'}))
     authAPI.me()
