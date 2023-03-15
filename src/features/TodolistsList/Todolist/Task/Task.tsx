@@ -17,14 +17,14 @@ type TaskPropsType = {
 export const Task = React.memo(({task, todolistId}: TaskPropsType) => {
     const {id, status, title} = task
     const dispatch = useAppDispatch()
-    const removeTask = useCallback(() => dispatch(deleteTasksTC(todolistId,id)), [])
+    const removeTask = useCallback(() => dispatch(deleteTasksTC({todolistId, taskId: id})), [])
     const changeTaskStatus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         const newStatus = e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New
-        dispatch(updateTaskTC(id, {status:newStatus}, todolistId))
+        dispatch(updateTaskTC({taskId: id, domainModel: {status: newStatus}, todolistId}))
     }, [])
     const changeTaskTitle = useCallback((newTitle: string) => {
-        dispatch(updateTaskTC(id, {title:newTitle},todolistId))
-    }, [id,todolistId])
+        dispatch(updateTaskTC({taskId: id, domainModel: {title: newTitle}, todolistId}))
+    }, [id, todolistId])
 
     return (
         <li key={id} className={!!status ? 'isDone' : ''}>

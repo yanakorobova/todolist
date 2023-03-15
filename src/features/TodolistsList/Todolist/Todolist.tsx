@@ -20,7 +20,6 @@ type TodoListPropsType = {
 const TodoList = React.memo(({todolist}: TodoListPropsType) => {
 
     const {id, filter, title, entityStatus} = todolist
-    console.log(title)
     const dispatch = useAppDispatch()
     const tasks = useAppSelector<TaskType[]>(state => state.tasks[id])
 
@@ -28,7 +27,10 @@ const TodoList = React.memo(({todolist}: TodoListPropsType) => {
         dispatch(getTasksTC(id))
     }, [])
 
-    const changeTodolistTitle = useCallback((newTitle: string) => dispatch(updateTodolistTitleTC(id, newTitle)), [id])
+    const changeTodolistTitle = useCallback((newTitle: string) => dispatch(updateTodolistTitleTC({
+        todolistId: id,
+        title: newTitle
+    })), [id])
 
     const filteredTasks = filter === 'active' ? tasks.filter(t => t.status === TaskStatuses.New)
         : filter === 'completed' ? tasks.filter(t => t.status === TaskStatuses.Completed)
@@ -40,7 +42,7 @@ const TodoList = React.memo(({todolist}: TodoListPropsType) => {
         })
         : <span>List is empty</span>
 
-    const addTask = useCallback((title: string) => dispatch(createTaskTC(id, title)), [id])
+    const addTask = useCallback((title: string) => dispatch(createTaskTC({todolistId: id, title})), [id])
 
     const removeTodoList = useCallback(() => dispatch(deleteTodolistTC(id)), [id])
 
