@@ -1,7 +1,6 @@
 import {tasksReducer} from './tasks-reducer'
 import {todolistsReducer} from './todolists-reducer'
-import {AnyAction, applyMiddleware, combineReducers} from 'redux'
-import {legacy_createStore as createStore} from 'redux'
+import {AnyAction, combineReducers} from 'redux'
 import thunk, {ThunkDispatch} from "redux-thunk";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {appReducer} from "./app-reducer";
@@ -19,7 +18,6 @@ export const store = configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunk)
 })
-
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
