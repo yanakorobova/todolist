@@ -1,9 +1,11 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {TextField} from "@mui/material";
+import {TaskStatuses} from "api/types";
 
 type EditableSpanPropsType = {
     title: string,
     changeTitle: (title: string) => void
+    taskStatus?: TaskStatuses
 }
 
 export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
@@ -33,7 +35,8 @@ export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
                 onChange={onChangeHandler}
                 onKeyDown={onEnter}
                 autoFocus/>
-            : <span onDoubleClick={activateEditModule}>{title}</span>
+            : <span onDoubleClick={activateEditModule}
+                    style={{color: props.taskStatus === TaskStatuses.Completed ? 'gray' : ''}}>{title}</span>
     );
 });
 

@@ -1,13 +1,12 @@
 import React, {ChangeEvent, useCallback} from 'react';
 import {Checkbox, IconButton} from "@mui/material";
-import {EditableSpan} from "../../../../components/EditableSpan";
+import {EditableSpan} from "components/EditableSpan";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
-import {TaskType} from "../../../../api/todolist-api";
 import {
     deleteTasksTC, updateTaskTC,
-} from "../../../../state/tasks-reducer";
-import {TaskStatuses} from "../../../../api/todolist-api";
-import {useAppDispatch} from "../../../../state/store";
+} from "features/TodolistsList/tasks-reducer";
+import {useAppDispatch} from "app/store";
+import {TaskStatuses, TaskType} from "api/types";
 
 type TaskPropsType = {
     task: TaskType
@@ -29,7 +28,7 @@ export const Task = React.memo(({task, todolistId}: TaskPropsType) => {
     return (
         <li key={id} className={!!status ? 'isDone' : ''}>
             <Checkbox color='primary' checked={!!status} onChange={changeTaskStatus}/>
-            <EditableSpan title={title} changeTitle={changeTaskTitle}/>
+            <EditableSpan title={title} changeTitle={changeTaskTitle} taskStatus={status}/>
             <IconButton onClick={removeTask} color='warning'><CancelPresentationIcon/></IconButton>
         </li>
     );

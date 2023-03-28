@@ -8,10 +8,10 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useFormik} from "formik";
-import {AppRootStateType, useAppDispatch} from "../../state/store";
-import {loginTC} from "../../state/auth-reducer";
-import {useSelector} from "react-redux";
+import {useAppDispatch, useAppSelector} from "app/store";
+import {loginTC} from "features/Auth/auth-reducer";
 import {Navigate} from "react-router-dom";
+import {selectIsLoggedIn} from "features/Auth/selectors";
 
 type FormikErrorType = {
     email?: string
@@ -19,8 +19,8 @@ type FormikErrorType = {
     rememberMe?: boolean
 }
 
-export const Login = () => {
-    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+export const Auth = () => {
+    const isLoggedIn = useAppSelector(selectIsLoggedIn)
     const dispatch = useAppDispatch()
 
     const formik = useFormik({

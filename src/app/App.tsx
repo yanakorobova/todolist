@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect} from 'react'
-import './App.css'
 import TodolistsList from '../features/TodolistsList/TodolistsList'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,29 +8,30 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import {Menu} from '@mui/icons-material';
 import {CircularProgress, LinearProgress} from "@mui/material";
-import {AppRootStateType, useAppDispatch, useAppSelector} from "../state/store";
-import {initializeAppTC, RequestStatusType} from "../state/app-reducer";
-import {ErrorSnackbar} from "../components/ErrorSnackbar";
+import {useAppDispatch, useAppSelector} from "app/store";
+import {initializeAppTC} from "app/app-reducer";
+import {ErrorSnackbar} from "components/ErrorSnackbar";
 import {Navigate, Route, Routes} from "react-router-dom";
-import {Login} from "../features/Login/Login";
-import {useSelector} from "react-redux";
-import {logoutTC} from "../state/auth-reducer";
+import {Auth} from "features/Auth/Auth";
+import {logoutTC} from "features/Auth/auth-reducer";
+import {selectAppStatus, selectIsAppInitialized} from "app/selectors";
+import {selectIsLoggedIn} from "features/Auth/selectors";
 
 
 function App() {
 
-    const status = useAppSelector<RequestStatusType>(state => state.app.status)
-    const isInitialized = useSelector<AppRootStateType,boolean>(state => state.app.isInitialized)
-    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+    const status = useAppSelector(selectAppStatus)
+    const isInitialized = useAppSelector(selectIsAppInitialized)
+    const isLoggedIn = useAppSelector(selectIsLoggedIn)
     const dispatch = useAppDispatch()
 
     const logOutHandler = useCallback(() => {
         dispatch(logoutTC())
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(initializeAppTC())
-    },[])
+    }, [])
 
     if (!isInitialized) {
         return <div
@@ -41,7 +41,7 @@ function App() {
     }
 
     return (
-        <div className="App">
+        <div>
             <ErrorSnackbar/>
             <AppBar position="static">
                 <Toolbar>
@@ -51,7 +51,6 @@ function App() {
                     <Typography variant="h6">
                         News
                     </Typography>
-                    <Button color="inherit">Login</Button>
                     {isLoggedIn && <Button color="inherit" onClick={logOutHandler}>Logout</Button>}
                 </Toolbar>
                 {status === 'loading' && <LinearProgress/>}
@@ -59,7 +58,7 @@ function App() {
             <Container fixed>
                 <Routes>
                     <Route path={'/'} element={<TodolistsList/>}/>
-                    <Route path={'/login'} element={<Login/>}/>
+                    <Route path={'/login'} element={<Auth/>}/>
 
                     <Route path={'/404'} element={<h1>404: PAGE NOT FOUND</h1>}/>
                     <Route path={'*'} element={<Navigate to={'/404'}/>}/>

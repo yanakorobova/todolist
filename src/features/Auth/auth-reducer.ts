@@ -1,7 +1,8 @@
-import {setAppStatusAC} from "./app-reducer";
-import {authAPI, LoginType} from "../api/login-api";
-import {handleServerAppError, handleServerNetworkError} from "../utils/error-utils";
+import {setAppStatusAC} from "app/app-reducer";
+import {authAPI} from "api/login-api";
+import {handleServerAppError, handleServerNetworkError} from "utils/error-utils";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {LoginType} from "api/types";
 
 const initialState = {
     isLoggedIn: false
