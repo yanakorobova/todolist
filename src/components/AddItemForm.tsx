@@ -11,12 +11,13 @@ type AddItemFormPropsType = {
 export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
     const [title, setTitle] = useState('')
     const [error, setError] = useState<string>('')
-
     const addItem = () => {
+        debugger
         if (title.trim()) {
             props.addItem(title.trim())
+            setTitle('')
+
         } else setError('Title is required')
-        setTitle('')
     }
     const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
         error && setError('')
