@@ -80,6 +80,9 @@ const todolistsSlice = createSlice({
             const index = state.findIndex(l => l.id === action.payload.id)
             state[index].entityStatus = action.payload.entityStatus
         },
+        clearTodolistDataAC: () =>{
+           return []
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(getTodolistsTC.fulfilled, (state, action) => {
@@ -98,7 +101,7 @@ const todolistsSlice = createSlice({
     }
 })
 export const todolistsReducer = todolistsSlice.reducer
-export const {changeTodolistEntityStatusAC, changeTodolistFilterAC} = todolistsSlice.actions
+export const {changeTodolistEntityStatusAC, changeTodolistFilterAC,clearTodolistDataAC} = todolistsSlice.actions
 
 
 

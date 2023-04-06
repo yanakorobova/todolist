@@ -1,4 +1,9 @@
-import {createTodolistTC, deleteTodolistTC, getTodolistsTC} from "features/TodolistsList/todolists-reducer";
+import {
+    clearTodolistDataAC,
+    createTodolistTC,
+    deleteTodolistTC,
+    getTodolistsTC
+} from "features/TodolistsList/todolists-reducer";
 import {todolistAPI} from "api/todolist-api";
 import {AppRootStateType} from "app/store";
 import {setAppStatusAC} from "app/app-reducer";
@@ -128,6 +133,9 @@ const tasksSlice = createSlice({
                 const tasks = state[action.payload.todolistId]
                 const index = tasks.findIndex(t => t.id === action.payload.taskId)
                 if (index > -1) tasks[index] = {...tasks[index], ...action.payload.domainModel}
+            })
+            .addCase(clearTodolistDataAC,()=>{
+                return {}
             })
     }
 })
