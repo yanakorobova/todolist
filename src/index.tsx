@@ -5,7 +5,7 @@ import App from "./app/App";
 import {store} from 'app/store'
 import {Provider} from 'react-redux'
 import * as serviceWorker from './serviceWorker'
-import {BrowserRouter, HashRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 
 
 const root = ReactDOM.createRoot(
