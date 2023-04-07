@@ -1,6 +1,6 @@
 {
   "name": "it-incubator-todolist-ts",
-  "homepage": "https://yanakorobova.github.io/todolist",
+  "homepage": "https://yanakorobova.github.io/todo-list",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
