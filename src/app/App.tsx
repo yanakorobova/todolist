@@ -55,7 +55,7 @@ function App() {
                 </Toolbar>
                 {status === 'loading' && <LinearProgress/>}
             </AppBar>
-            <Container fixed>
+            <Container fixed sx={{pb: '50px'}}>
                 <Routes>
                     <Route path={'/'} element={<TodolistsList/>}/>
                     <Route path={'/login'} element={<Auth/>}/>
