@@ -49,7 +49,7 @@ function App() {
                         <Menu/>
                     </IconButton>
                     <Typography variant="h6">
-                        News
+                        TodoList
                     </Typography>
                     {isLoggedIn && <Button color="inherit" onClick={logOutHandler}>Logout</Button>}
                 </Toolbar>
