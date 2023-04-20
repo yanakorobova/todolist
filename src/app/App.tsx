@@ -44,18 +44,20 @@ function App() {
         <div>
             <ErrorSnackbar/>
             <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
-                        <Menu/>
-                    </IconButton>
-                    <Typography variant="h6">
-                        TodoList
-                    </Typography>
-                    {isLoggedIn && <Button color="inherit" onClick={logOutHandler}>Logout</Button>}
-                </Toolbar>
-                {status === 'loading' && <LinearProgress/>}
+                <Container style={{padding: 0}} maxWidth={'lg'}>
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" aria-label="menu">
+                            <Menu/>
+                        </IconButton>
+                        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                            TodoList
+                        </Typography>
+                        {isLoggedIn && <Button color="inherit" onClick={logOutHandler}>Logout</Button>}
+                    </Toolbar>
+                    {status === 'loading' && <LinearProgress/>}
+                </Container>
             </AppBar>
-            <Container fixed sx={{pb: '50px'}}>
+            <Container fixed sx={{pb: '50px'}} maxWidth={'lg'}>
                 <Routes>
                     <Route path={'/'} element={<TodolistsList/>}/>
                     <Route path={'/login'} element={<Auth/>}/>

@@ -28,7 +28,7 @@ function TodolistsList() {
 
     const todoListComponents = todoLists.map((todoList) => {
         return <Grid item key={todoList.id}>
-            <Paper sx={{p: '10px'}}>
+            <Paper  elevation={2} sx={{p: '2rem'}}>
                 <TodoList
                     todolist={todoList}
                 />
@@ -40,7 +40,7 @@ function TodolistsList() {
     }
     return (
         <>
-            <Grid container sx={{p: '20px'}}>
+            <Grid container sx={{p: '20px', mb:'10px'}}>
                 <AddItemForm addItem={addTodoList}/>
             </Grid>
             <Grid container spacing={3}>

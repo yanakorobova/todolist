@@ -92,7 +92,7 @@ const todolistsSlice = createSlice({
             return state.filter(l => l.id !== action.payload.todolistId)
         })
         builder.addCase(createTodolistTC.fulfilled, (state, action) => {
-            state.push({...action.payload.newTodolist, filter: 'all', entityStatus: 'idle'})
+            state.unshift({...action.payload.newTodolist, filter: 'all', entityStatus: 'idle'})
         })
         builder.addCase(updateTodolistTitleTC.fulfilled, (state, action) => {
             const index = state.findIndex(l => l.id === action.payload.todolistId)

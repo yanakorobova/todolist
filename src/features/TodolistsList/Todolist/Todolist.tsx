@@ -63,13 +63,13 @@ const TodoList = React.memo(({todolist}: TodoListPropsType) => {
     }
 
     return (
-        <div>
+        <div >
             <h3>
                 <EditableSpan title={title} changeTitle={changeTodolistTitle}/>
                 <IconButton onClick={removeTodoList} disabled={entityStatus === 'loading'}><Delete/></IconButton>
             </h3>
             <AddItemForm addItem={addTask} disabled={entityStatus === 'loading'}/>
-            <ul>
+            <ul >
                 {tasksElements}
             </ul>
             <div>
