@@ -12,7 +12,6 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
     const [title, setTitle] = useState('')
     const [error, setError] = useState<string>('')
     const addItem = () => {
-        debugger
         if (title.trim()) {
             props.addItem(title.trim())
             setTitle('')
